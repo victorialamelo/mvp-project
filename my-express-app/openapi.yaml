@@ -1,0 +1,117 @@
+openapi: 3.0.3
+info:
+  title: Daily Itinerary API
+  description: |-
+    Daily Itinerary API
+  version: 0.1.0
+servers:
+  - url: https://vicky-daily-itinerary.netlify.app/api
+paths:
+  /schedule:
+    get:
+      tags:
+        - schedule
+      summary: Reads all schedules
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Schedule"
+    post:
+      tags:
+        - schedule
+      summary: Creates a new schedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Schedule"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Schedule"
+  /schedule/{scheduleId}:
+    get:
+      tags:
+        - schedule
+      summary: Read one schedule
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful operations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Schedule"
+    delete:
+      tags:
+        - schedule
+      summary: Delete one schedule
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful operations
+  /schedule/{scheduleId}/items:
+    get:
+      tags:
+        - schedule
+      summary: Reads all items of a schedule
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful operations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ScheduleItem"
+components:
+  schemas:
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 10
+        name:
+          type: string
+          example: "Feb 17, 2025"
+    ScheduleItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 42
+        name:
+          type: string
+          example: "Home"
+        lat:
+          type: number
+          example: 54.2123
+        lng:
+          type: number
+          example: 32.1231
