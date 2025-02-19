@@ -1,23 +1,23 @@
 import { Map, APIProvider, AdvancedMarker } from "@vis.gl/react-google-maps";
 import { useParams, Link, useNavigate } from "react-router";
 import { useState } from "react";
-import { backendScheduleItemCreate } from "../backend";
+import { AddNewItemToSchedule } from "../backend";
 
 export function ScheduleItemAddPage() {
-  const params = useParams(); // react router built-in to read URL parameters
+  const params = useParams(); // react router built-in to provide an object with URL parameters
   const navigate = useNavigate(); // react router built-in to navigate
 
   const [position, setPosition] = useState({ lat: 41.3851, lng: 2.1734 });
 
   const save = async (formData) => {
     const newItem = {
-      schedule_id: Number(params.schedule_id),
+      schedule_id: Number(params.schedule_id), // transform to number due to original string value
       location_name: formData.get("location_name"),
       lat: Number(formData.get("lat")),
       lng: Number(formData.get("lng")),
     };
 
-    await backendScheduleItemCreate(params.schedule_id, newItem);
+    await AddNewItemToSchedule(params.schedule_id, newItem);
 
     // after saving, I must then navigate back to the schedule page
     // going one path up with ".." goes to the parent URL

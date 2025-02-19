@@ -35,13 +35,11 @@ module.exports = async function db(query) {
         }
 
         if (!result.length) {
-          if (result.affectedRows === 0) {
-            results.error = "Action not complete";
-            console.log(err);
-            reject(err);
-            con.end();
-            return;
-          }
+          // if (result.affectedRows === 0) {
+          //   reject(new Error("expected affected rows"));
+          //   con.end();
+          //   return;
+          // }
 
           // push the result (which should be an OkPacket) to data
           // germinal - removed next line because it returns an array in an array when empty set

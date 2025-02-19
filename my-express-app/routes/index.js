@@ -7,7 +7,6 @@ router.get('/', function (req, res) {
   res.send({ title: 'Express' });
 });
 
-
 // GET my schedules list
 //  /schedule
 
@@ -29,7 +28,7 @@ router.get("/schedule/:schedule_id", async (req, res) => {
   try {
     const query = `SELECT * FROM Schedule WHERE schedule_id = ${scheduleId}`; // 1-create the query
     const results = await db(query); // 2-send the query to the DB
-    res.status(200).json(results.data); // 3-send back the result
+    res.status(200).json(results.data[0]); // 3-send back the result
   } catch (error) {
     res.status(500).json({ message: error.message }); // .message is a built-in property that will describe the error to the user
   }
@@ -49,21 +48,25 @@ router.get("/schedule/:schedule_id/items", async (req, res) => {
   }
 });
 
-// POST (insert) a new schedule into the Schedule table/list
+// POST(insert) a new schedule into the Schedule table / list
+//  /schedule
 router.post("/schedule", async (req, res) => {
   try {
-    await db(
+    const query = await db(
       `INSERT INTO Schedule
       (schedule_name)
-      VALUES ("${req.body.schedule_name}")`
+      VALUES ("${req.body.schedule_name}"); 
+      SELECT LAST_INSERT_ID()`
     );
-    const schedules = await db("SELECT * FROM Schedule ORDER BY schedule_id ASC"); // get the new data to paste in the response
-    res.status(200).json(schedules.data); // send back the updated list
+    console.log(query);
+    const scheduleId = query.data[0].insertId;
+    const schedules = await db(`SELECT * FROM Schedule WHERE schedule_id = ${scheduleId}`); // get the new data to paste in the response
+    res.status(200).json(schedules.data[0]); // send back the updated list and row values
+
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
 });
-
 
 // POST new item on my schedule
 //  /schedule/:schedule_id/items
@@ -122,8 +125,6 @@ router.post("/schedule/:schedule_id/items", async (req, res) => {
   }
 });
 
-
-
 // DELETE one schedule from my schedules list (delete it from the 2 tables)
 //  /schedule/:schedule_id`
 
@@ -141,7 +142,6 @@ router.delete("/schedule/:schedule_id", async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 });
-
 
 // DELETE an item on one X schedule
 //  /schedule/:schedule_id/items/:item_id
@@ -171,5 +171,6 @@ router.delete("/schedule/:schedule_id/items/:item_id", async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 });
+
 
 module.exports = router;
