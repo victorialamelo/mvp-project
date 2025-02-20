@@ -12,6 +12,7 @@ export function SchedulePage() {
   const [items, setItems] = useState([]);
   const [schedule, setSchedule] = useState({});
   console.log(schedule);
+  console.log(items);
   // use an effect to trigger the loading of the backend items
   useEffect(() => {
     GetItemsList(params.schedule_id).then((items) => setItems(items));
@@ -42,28 +43,44 @@ export function SchedulePage() {
     window.open(googleMapsUrl);
   };
 
+
   return (
-    <>
-      <Link to="/">Back</Link>
-      <h1>{schedule.schedule_name}</h1>
-      <ul>
-        {items.map((item) => {
-          return (
-            <li key={item.item_id}>
-              {item.location_name} - {item.lat},{item.lng}
-              <button
-                onClick={() => deleteItem(params.schedule_id, item.item_id)}
-              >
-                🗑️
-              </button>
+    <div className="app-container">
+      <main className="app-main-center">
+        {/* Header Section */}
+        <header className="redirect-home-page">
+          <Link to="/">Back to My Schedules</Link>
+          <h1 className="h1-add-schedule-page">{schedule.schedule_name}</h1>
+        </header>
+  
+        {/* Buttons Section */}
+        <section className="buttons-position-center">
+          <Link to="./add-item">
+            <button className="handler-button">Add New Location</button>
+          </Link>
+          <button className="handler-button" onClick={openGoogleMaps}>Open in Google Maps</button>
+        </section>
+  
+        {/* List of Items (Locations) */}
+        <section>
+          <ul>
+          {items.map((item, index) => (
+            <li key={item.item_id} className="li-items">
+              <header>
+                <h2>
+                  {index + 1}. {item.location_name}
+                  <button className="delete-button" onClick={() => deleteItem(params.schedule_id, item.item_id)}>
+                  Delete 🗑️
+                </button>
+                </h2>
+               </header>
             </li>
-          );
-        })}
-      </ul>
-      <Link to="./add-item">Add Item</Link>
-      <button onClick={() => openGoogleMaps()}>
-        Open Itinerary on Google Maps
-      </button>
-    </>
+          ))}
+          </ul>
+        </section>
+      </main>
+    </div>
   );
-}
+  
+  };
+

@@ -26,30 +26,44 @@ export function ScheduleItemAddPage() {
 
   return (
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-      {/* form "action" is like "onSubmit" but simpler, since you don't need to preventDefault() and all the input values come as a FormData parameter */}
-      <form action={save}>
-        <input
-          type="text"
-          name="location_name"
-          required
-          placeholder="Location name"
-        />
-        <input type="hidden" name="lat" value={position.lat} />
-        <input type="hidden" name="lng" value={position.lng} />
-        <button>Save</button>
-        <Link to="./..">Cancel</Link>
-        <Map
-          mapId="my-map"
-          style={{ width: "300px", height: "300px" }}
-          defaultCenter={{ lat: 41.3851, lng: 2.1734 }}
-          defaultZoom={13}
-          gestureHandling={"greedy"}
-          disableDefaultUI={true}
-          onCenterChanged={(e) => setPosition(e.detail.center)}
-        >
-          <AdvancedMarker position={position} />
-        </Map>
-      </form>
+      <div className="app-container">
+        <main className="app-main-center">
+          <header>
+            <h1 className="h1-add-schedule-page">Add a new location</h1>
+          </header>
+
+          {/* form Section */}
+          <section className="buttons-position-center">
+            <form action={save}>
+              <input className="input-location-name"
+                type="text"
+                name="location_name"
+                required
+                placeholder="Enter Location Name"
+              />
+              <input type="hidden" name="lat" value={position.lat} />
+              <input type="hidden" name="lng" value={position.lng} />
+              <button className="handler-button" type="submit">Save</button>
+              <Link to="./..">
+                <button className="handler-button" type="button">Cancel</button>
+              </Link>
+            </form>
+          </section>
+
+          {/* map Section */}
+          <section>
+            <Map
+              mapId="my-map"
+              style={{ width: "100%", height: "700px" }}
+              defaultCenter={position}
+              defaultZoom={13}
+              onCenterChanged={(e) => setPosition(e.detail.center)}
+            >
+              <AdvancedMarker position={position} />
+            </Map>
+          </section>
+        </main>
+      </div>
     </APIProvider>
   );
 }

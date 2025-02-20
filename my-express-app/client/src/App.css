@@ -1,0 +1,156 @@
+ @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+   
+ /* .app-main {
+    background-color: rgb(250, 238, 234);
+    display: flex;
+ } */
+   .app-container {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     width: 100vw;
+     height: 100vw;
+     background: url('https://img.freepik.com/free-vector/cream-background-striped-pattern-beige-aesthetic-design-vector_53876-154204.jpg'); 
+ }
+   
+   .app-main-center {
+     display: flex;
+     flex-direction: column;
+     width: min(100vw, 45rem);
+     height: auto;
+     background-color: rgb(250, 238, 234);
+ }
+   
+    .buttons-position-center{
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+ }
+   
+    .h1-my-schedules-homepage {
+     display: flex;
+     justify-content: center;
+     color:rgb(0, 0, 0);
+     font-size: 60px;
+     font-family: "Raleway", serif;
+ }
+ 
+     .schedules-list-homepage {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-size: x-large;
+ }
+ 
+ .li-schedules {
+     padding: 1px 110px;
+     background-color: rgb(214, 183, 157);
+     color: rgb(0, 0, 0);
+     border: none;
+     border-radius: 10px;
+     font-size: 15px;
+     margin-bottom: 15px;
+     font-size:xx-large;
+     list-style: none;
+     font-family: "Raleway", serif;
+ }
+ 
+ .li-schedules:hover{
+     background-color: #aa865d; 
+ }
+
+ .start-destination-schedule {
+    font-size: large;
+ }
+ 
+ .handler-button {
+     padding: 22px 35px;
+     background-color: rgb(214, 183, 157);; 
+     color: rgb(0, 0, 0);
+     border: none;
+     border-radius: 10px;
+     font-size: 19px;
+     justify-content: center;
+     align-items: center;
+     margin-left: 10px;
+     font-family: "Raleway", serif;
+ }
+ 
+ .handler-button:hover {
+     background-color: #aa865d; 
+ }
+ 
+ .date-input {
+     padding: 22px 35px;
+     background-color: rgb(214, 183, 157);; 
+     color: rgb(0, 0, 0);
+     border: none;
+     border-radius: 10px;
+     font-size: 19px;
+     justify-content: center;
+     align-items: center;
+     margin-left: 35px;
+     font-family: "Raleway", serif;    
+ }
+ 
+ .date-input:hover {
+     background-color: #aa865d; 
+ }
+ 
+ .delete-button {
+     width: 55px;
+     height: auto;
+     margin-left: 45px;
+     font-family: "Raleway", serif;
+ }
+ 
+ .h1-add-schedule-page {
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     color:rgb(0, 0, 0);
+     font-size: 55px;
+     font-family: "Raleway", serif;
+ }
+ 
+ .redirect-home-page{
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     color:rgb(0, 0, 0);
+     font-size: 25px;
+     margin-top: 25px;
+     font-family: "Raleway", serif
+ }
+ 
+ .li-items {
+    display: flex;
+     flex-direction: column;
+     align-items: center;
+     background-color: rgb(214, 183, 157);
+     color: rgb(0, 0, 0);
+     border: none;
+     border-radius: 10px;
+     font-size: 10px;
+     margin-bottom: 15px;
+     font-size:large;
+     list-style: none;
+     font-family: "Raleway", serif;
+     margin-right: 38px;
+ }
+ 
+ .input-location-name {
+     padding: 22px 35px;
+     background-color: rgb(214, 183, 157);; 
+     color: rgb(0, 0, 0);
+     border-radius: 10px;
+     font-size: 19px;
+     margin-left: 10px;
+     margin-bottom: 4px;
+     font-family: "Raleway", serif;
+     border: 3px solid rgb(0, 0, 0);
+ }
+ 
+ 
