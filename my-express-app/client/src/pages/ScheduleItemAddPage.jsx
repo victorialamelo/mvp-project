@@ -17,7 +17,7 @@ export function ScheduleItemAddPage() {
       lng: Number(formData.get("lng")),
     };
 
-    await AddNewItemToSchedule(params.schedule_id, newItem);
+    await AddNewItemToSchedule(params.schedule_id, newItem); // send the new object to backend
 
     // after saving, I must then navigate back to the schedule page
     // going one path up with ".." goes to the parent URL
@@ -30,27 +30,36 @@ export function ScheduleItemAddPage() {
         <main className="app-main-center">
           <header>
             <h1 className="h1-add-schedule-page">Add a new location</h1>
+            <h2 className="h2-description">
+              Drag and select your next stop on the map. Then, enter the name of
+              this location in the field below to save it to your itinerary.
+            </h2>
           </header>
 
-          {/* form Section */}
+          {/* form section */}
           <section className="buttons-position-center">
             <form action={save}>
-              <input className="input-location-name"
+              <input
+                className="input-location-name"
                 type="text"
                 name="location_name"
                 required
-                placeholder="Enter Location Name"
+                placeholder="Enter Location Name 📌"
               />
               <input type="hidden" name="lat" value={position.lat} />
               <input type="hidden" name="lng" value={position.lng} />
-              <button className="handler-button" type="submit">Save</button>
+              <button className="handler-button" type="submit">
+                Save
+              </button>
               <Link to="./..">
-                <button className="handler-button" type="button">Cancel</button>
+                <button className="handler-button" type="button">
+                  Cancel
+                </button>
               </Link>
             </form>
           </section>
 
-          {/* map Section */}
+          {/* map section */}
           <section>
             <Map
               mapId="my-map"

@@ -48,6 +48,21 @@ router.get("/schedule/:schedule_id/items", async (req, res) => {
   }
 });
 
+// // GET one item from my items list
+// //  /schedule/:schedule_id/items/:item_id
+// router.get("/schedule/:schedule_id/items/:item_id", async (req, res) => {
+//   const scheduleId = req.params.schedule_id;
+//   const itemId = req.params.item_id;
+//   try {
+//     const query = `SELECT * FROM ScheduleItem WHERE schedule_id = ${scheduleId} AND item_id = ${itemId}`; // 1-create the query
+//     const results = await db(query); // 2-send the query to the DB
+//     res.status(200).json(results.data); // 3-send back the result
+//   } catch (error) {
+//     res.status(500).json({ message: error.message }); // .message is a built-in property that will describe the error to the user
+//   }
+// });
+
+
 // POST(insert) a new schedule into the Schedule table / list
 //  /schedule
 router.post("/schedule", async (req, res) => {

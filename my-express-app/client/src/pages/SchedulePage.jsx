@@ -17,7 +17,7 @@ export function SchedulePage() {
   useEffect(() => {
     GetItemsList(params.schedule_id).then((items) => setItems(items));
     GetSchedule(params.schedule_id).then((schedule) => setSchedule(schedule));
-  }, [params.schedule_id]);
+  }, [params.schedule_id]); // useEffect will re-run whenever the value of params.schedule_id changes
 
   const deleteItem = async (scheduleId, itemId) => {
     await DeleteItem(scheduleId, itemId);
@@ -43,6 +43,15 @@ export function SchedulePage() {
     window.open(googleMapsUrl);
   };
 
+  const shareItinerary = () => {
+    const waypoints = items.map(({ lat, lng }) => `${lat},${lng}`);
+    const destination = waypoints.pop();
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${destination}&waypoints=${waypoints.join(
+      "|"
+    )}`;
+    // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share - I am creating a property 'url' with value 'googleMapsUrl' inside the object parameter of the share() method
+    navigator.share({ url: googleMapsUrl });
+  };
 
   return (
     <div className="app-container">
@@ -50,37 +59,48 @@ export function SchedulePage() {
         {/* Header Section */}
         <header className="redirect-home-page">
           <Link to="/">Back to My Schedules</Link>
-          <h1 className="h1-add-schedule-page">{schedule.schedule_name}</h1>
+          <h1 className="h1-schedules">{schedule.schedule_name}</h1>
         </header>
-  
+
         {/* Buttons Section */}
         <section className="buttons-position-center">
           <Link to="./add-item">
-            <button className="handler-button">Add New Location</button>
+            <button className="handler-button">Add New Location 📌</button>
           </Link>
-          <button className="handler-button" onClick={openGoogleMaps}>Open in Google Maps</button>
+          <button className="handler-button" onClick={openGoogleMaps}>
+            Open Itinerary on Google Maps 🗺️
+          </button>
         </section>
-  
+        {/* Buttons Section */}
+        <section className="buttons-position-center">
+          <button className="button-share-itinerary" onClick={shareItinerary}>
+            Share Itinerary Link 🔗
+          </button>
+        </section>
+
         {/* List of Items (Locations) */}
         <section>
           <ul>
-          {items.map((item, index) => (
-            <li key={item.item_id} className="li-items">
-              <header>
-                <h2>
-                  {index + 1}. {item.location_name}
-                  <button className="delete-button" onClick={() => deleteItem(params.schedule_id, item.item_id)}>
-                  Delete 🗑️
-                </button>
-                </h2>
-               </header>
-            </li>
-          ))}
+            {items.map((item, index) => (
+              <li key={item.item_id} className="li-items">
+                <header>
+                  <h2>
+                    {index + 1}. {item.location_name}
+                    <button
+                      className="delete-button"
+                      onClick={() =>
+                        deleteItem(params.schedule_id, item.item_id)
+                      }
+                    >
+                      Delete 🗑️
+                    </button>
+                  </h2>
+                </header>
+              </li>
+            ))}
           </ul>
         </section>
       </main>
     </div>
   );
-  
-  };
-
+}

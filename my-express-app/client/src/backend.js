@@ -34,6 +34,14 @@ export async function GetItemsList(scheduleId) {
     return await response.json();
 }
 
+
+// export async function GetItems(scheduleId, itemId) {
+//     const response = await fetch(`/api/schedule/${scheduleId}/items/${itemId}`, {
+//         method: "GET",
+//     });
+//     return await response.json();
+// }
+
 export async function AddNewItemToSchedule(scheduleId, item) {
     const response = await fetch(`/api/schedule/${scheduleId}/items`, {
         method: "POST",
