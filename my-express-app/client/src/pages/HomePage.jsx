@@ -11,9 +11,10 @@ export function HomePage() {
       const schedules = await GetSchedulesList();
       setSchedules(schedules);
     }
-    fetchSchedules();
+    fetchSchedules(); // I am fetching and setting the schedules list when the component mounts (i.e. when it is rendered for the first time; fetchSchedules() will be called just once)
   }, []);
 
+  // https://react.dev/reference/react-dom/components/form
   const createSchedule = async (formData) => {
     const newSchedule = { schedule_name: formData.get("date-name") };
     const addedSchedule = await AddNewSchedule(newSchedule); // send the new object (with the new schedule_name) to backend

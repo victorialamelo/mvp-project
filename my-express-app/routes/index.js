@@ -158,7 +158,7 @@ router.delete("/schedule/:schedule_id", async (req, res) => {
   }
 });
 
-// DELETE an item on one X schedule
+// DELETE an item from one specific schedule
 //  /schedule/:schedule_id/items/:item_id
 
 router.delete("/schedule/:schedule_id/items/:item_id", async (req, res) => {

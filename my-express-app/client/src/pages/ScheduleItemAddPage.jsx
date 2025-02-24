@@ -9,6 +9,9 @@ export function ScheduleItemAddPage() {
 
   const [position, setPosition] = useState({ lat: 41.3851, lng: 2.1734 });
 
+  // used 'form action’ to handle form submission, and manipulated formData objects instead of state variables (no need to use preventDefault() as well).
+  // https://react.dev/reference/react-dom/components/form
+  // Usage: passed a function (the "save" function) to the action prop of form to run the function when the form is submitted. formData will be passed to the function as an argument so you can access the data submitted by the form.
   const save = async (formData) => {
     const newItem = {
       schedule_id: Number(params.schedule_id), // transform to number due to original string value

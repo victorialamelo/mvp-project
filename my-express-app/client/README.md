@@ -1,7 +1,7 @@
 # MY SCHEDULES APP
 
 MAIN OBJECTIVE:
-The main objective of this app is to allow users to create and save schedules with planned itineraries on Google Maps. Users can also share these itineraries with others. While the Google Maps app currently allows users to access past itineraries, it does not provide the ability to save future itineraries, which is where this website can be useful.
+The main objective of this app is to allow users to create and save schedules with planned itineraries on Google Maps. Users can also share these itineraries with others. While the Google Maps app currently allows users to access past itineraries, it does not provide the ability to save future itineraries, which is where this website can be useful. This app contains 3 main views, which can be found on the 'pages' folder inside 'client': 1- the Home Page, with the list of created schedules; 2- the page to see your recently created Schedule and add stops to your itinerary; and 3- the Add New Location (item) page, with the Google Maps API.
 
 # MAIN SETUP STEPS
 
@@ -9,7 +9,7 @@ The main objective of this app is to allow users to create and save schedules wi
 
 - Run `npm install` in project directory (mvp-project/my-express-app). This will install server-related dependencies such as `express`.
 - `cd client` and run `npm install`. This will install client dependencies (React/Google Maps API).
-- You will need to create your Google Maps API key - instructions here https://shorturl.at/kopfA 
+- You will need to create your Google Maps API key - instructions here https://shorturl.at/kopfA
 - After creating the API key, create a `.env` file inside 'client' folder. Inside `.env` paste the following line with your API key, without the [ ]:
 
 VITE_GOOGLE_MAPS_API_KEY=[YOUR API KEY]
@@ -39,13 +39,17 @@ DB_PASS=yourMySQLpassword
 
 ![Database Schema](/my-express-app/public/images/database-schema.png)
 
+# API ROUTES
+
+![API Routes](/my-express-app/public/images/API-routes.png)
 
 # SUGGESTED FEATURES LIST
-* Allowing the user to input a different Schedule name (instead of default date name YYY-MM-DD).
-* Re-ordering items/stops on the itinerary. Currently, user must delete location and enter new ones consecutively.
-* Integrating ‘new location’ input field with Google Maps (automatic fetching place name on input field based on the marker coordinates).
-* Changing default map center location to user’s current location (now default center is in Barcelona).
-* Adding a user_id/login validation page and/or different user views.
 
+- Allowing the user to input a different Schedule name (instead of default date name YYY-MM-DD).
+- Rendering the starting and destination locations names on "From x to y" along each Schedule on home page.
+- Re-ordering items/stops on the itinerary. Currently, user must delete location and enter new ones consecutively.
+- Integrating ‘new location’ input field with Google Maps (automatic fetching place name on input field based on the marker coordinates).
+- Changing default map center location to user’s current location (now default center is in Barcelona).
+- Adding a user_id/login validation page and/or different user views.
 
 _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
